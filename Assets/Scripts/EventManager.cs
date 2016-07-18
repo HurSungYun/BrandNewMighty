@@ -3,9 +3,17 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
+public class MightyEvent : UnityEvent<object>
+{
+}
+
+
 public class EventManager : MonoBehaviour {
 
-	private Dictionary <string, UnityEvent> eventDictionary;
+	public delegate void DelegatedFunction (object obj);
+
+	private Dictionary <string, MightyEvent> eventDictionary;
 	private static EventManager eventManager;
 
 	public static EventManager instance	{
@@ -26,34 +34,34 @@ public class EventManager : MonoBehaviour {
 
 	void Init () {
 		if (eventDictionary == null) {
-			eventDictionary = new Dictionary<string, UnityEvent>();
+			eventDictionary = new Dictionary<string, MightyEvent>();
 		}
 	}
 
-	public static void StartListening (string eventName, UnityAction listener)  {
-		UnityEvent thisEvent = null;
+	public static void StartListening (string eventName, UnityAction<object> listener)  {
+		MightyEvent thisEvent = null;
 		if (instance.eventDictionary.TryGetValue (eventName, out thisEvent)) {
 			thisEvent.AddListener (listener);
 		} 
 		else {
-			thisEvent = new UnityEvent ();
+			thisEvent = new MightyEvent ();
 			thisEvent.AddListener (listener);
 			instance.eventDictionary.Add (eventName, thisEvent);
 		}
 	}
 
-	public static void StopListening (string eventName, UnityAction listener) {
+	public static void StopListening (string eventName, UnityAction<object> listener) {
 		if (eventManager == null) return;
-		UnityEvent thisEvent = null;
+		MightyEvent thisEvent = null;
 		if (instance.eventDictionary.TryGetValue (eventName, out thisEvent))  {
 			thisEvent.RemoveListener (listener);
 		}
 	}
 
-	public static void TriggerEvent (string eventName)	{
-		UnityEvent thisEvent = null;
+	public static void TriggerEvent (string eventName, object obj)	{
+		MightyEvent thisEvent = null;
 		if (instance.eventDictionary.TryGetValue (eventName, out thisEvent))  {
-			thisEvent.Invoke ();
+			thisEvent.Invoke (obj);
 		}
 	}
 }

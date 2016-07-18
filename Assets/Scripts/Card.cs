@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 public class Card : MonoBehaviour {
@@ -13,7 +14,7 @@ public class Card : MonoBehaviour {
 		EventManager.StopListening (this.gameObject.name + "played", PlayFunction);
 	}
 
-	void PlayFunction ()  {
+	void PlayFunction (object cardInfo)  {
 		Debug.Log (this.gameObject.name + " was played!");
 	}
 
@@ -25,7 +26,7 @@ public class Card : MonoBehaviour {
 		if (ableToPlay || true) {
 			//TODO: play card
 //			Debug.Log(this.gameObject.name + " played");
-			EventManager.TriggerEvent (this.gameObject.name + "played");
+			EventManager.TriggerEvent (this.gameObject.name + "played", null);
 		}
 	}
 
