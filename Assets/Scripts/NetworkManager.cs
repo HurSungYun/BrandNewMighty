@@ -53,7 +53,12 @@ public class NetworkManager : MonoBehaviour {
 		//TODO: parse data and send information to GameManager
 	}
 
-	void PostEvent(string EventName, object obj){
+	void PostEvent(string eventName, object obj){
 		//TODO: make HTTP Class post events
+
+		//TODO: convert object into Dictionary<string, string> form
+
+		// result = Http.POST(url, postObject);
+		// check error
 	}
 }
