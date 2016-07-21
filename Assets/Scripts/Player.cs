@@ -9,18 +9,19 @@ public class Player : MonoBehaviour {
 	private int currScore;
 	public int side; //0: 주공 1: 프렌드 2: 야당 3: 미정
 
+	/*
 	public int Mine {
 		//get { return mine; }
 		set {  = value; }
 	}
-
+	*/
 
 	public override string ToString ()
 	{
 		return string.Format (playerId);
 	}
 
-	public override bool Equals (Player o)
+	public bool Equals (Player o)
 	{
 		if (this.playerId != o.playerId)
 			return false;

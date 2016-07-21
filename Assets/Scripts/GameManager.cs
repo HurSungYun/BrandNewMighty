@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour {
 
 	//TODO: Procrastinate
 	public void SetFriendInfo() {
-		NetworkManager.PostEvent ("setfriend", object /* ... */);
+		NetworkManager.PostEvent ("setfriend", null /* ... */);
 	}
 
 	public void DiscardOptionalCards() {
