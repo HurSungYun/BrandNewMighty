@@ -8,21 +8,23 @@ public class Card : MonoBehaviour {
 
 	void OnEnable ()  {
 		EventManager.StartListening (this.gameObject.name + "played", PlayFunction);
+		ableToPlay = true;
 	}
 
 	void OnDisable ()  {
 		EventManager.StopListening (this.gameObject.name + "played", PlayFunction);
+		ableToPlay = false;
 	}
 
 	void PlayFunction (object cardInfo)  {
 		Debug.Log (this.gameObject.name + " was played!");
 	}
 
-	void setInfo(int type, int num){
+	void SetInfo(int type, int num){
 
 	}
 
-	public void tryPlay(){
+	public void TryPlay(){
 		if (ableToPlay || true) {
 			//TODO: play card
 //			Debug.Log(this.gameObject.name + " played");
