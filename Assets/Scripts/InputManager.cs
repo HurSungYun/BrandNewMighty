@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour {
 
 				Card selectedCard = hit.collider.gameObject.GetComponent<Card> ();
 				if (selectedCard != null) {
-					selectedCard.tryPlay ();
+					selectedCard.TryPlay ();
 				}
 			}
 		}
