@@ -4,7 +4,14 @@ using System.Collections;
 
 public class Card : MonoBehaviour {
 
+	private int type;
+	private int number;
+
 	private bool ableToPlay = false;
+
+	public Card(int type, int number) {
+		SetInfo (type, number);
+	}
 
 	void OnEnable ()  {
 		EventManager.StartListening (this.gameObject.name + "played", PlayFunction);
@@ -21,7 +28,9 @@ public class Card : MonoBehaviour {
 	}
 
 	void SetInfo(int type, int num){
-
+		this.type = type;
+		this.number = num;
+		Debug.Log("Set Card into: " + this.type + " " + this.number);
 	}
 
 	public void TryPlay(){

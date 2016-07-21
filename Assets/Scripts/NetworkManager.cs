@@ -25,35 +25,36 @@ public class NetworkManager : MonoBehaviour {
 
 	//These functions are triggered by HTTP 
 
-	void GetPlayed(object obj){
+	public void GetPlayed(object obj){
 		//TODO: parse data and send information to GameManager
 	}
 
-	void GetPledged(object obj){
+	public void GetPledged(object obj){
 		//TODO: parse data and send information to GameManager
 	}
 
-	void GetDiscarded(object obj){
+	public void GetDiscarded(object obj){
 		//TODO: parse data and send information to GameManager
 	}
 
-	void GetDealMissed(object obj){
+	public void GetDealMissed(object obj){
 		//TODO: parse data and send information to GameManager
 	}
 
-	void GetDealed(object obj){
+	public void GetDealed(object obj){
+		//TODO: parse data and send information to GameManager
+		//GameManager.dealed(var a[10]);
+	}
+
+	public void GetRoundEnded(object obj){
 		//TODO: parse data and send information to GameManager
 	}
 
-	void GetRoundEnded(object obj){
+	public void GetGameEnded(object obj){
 		//TODO: parse data and send information to GameManager
 	}
 
-	void GetGameEnded(object obj){
-		//TODO: parse data and send information to GameManager
-	}
-
-	void PostEvent(string eventName, object obj){
+	public void PostEvent(string eventName, object obj){
 		//TODO: make HTTP Class post events
 
 		//TODO: convert object into Dictionary<string, string> form
