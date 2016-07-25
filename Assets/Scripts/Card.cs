@@ -6,11 +6,17 @@ public class Card : MonoBehaviour {
 
 	private int type;
 	private int number;
-
 	private bool ableToPlay = false;
+
 
 	public Card(int type, int number) {
 		SetInfo (type, number);
+	}
+	public int getType(){
+		return type;
+	}
+	public int getNumber(){
+		return number;
 	}
 
 	void OnEnable ()  {
@@ -27,7 +33,7 @@ public class Card : MonoBehaviour {
 		Debug.Log (this.gameObject.name + " was played!");
 	}
 
-	void SetInfo(int type, int num){
+	public void SetInfo(int type, int num){
 		this.type = type;
 		this.number = num;
 		Debug.Log("Set Card into: " + this.type + " " + this.number);
