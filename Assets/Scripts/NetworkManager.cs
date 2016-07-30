@@ -57,32 +57,32 @@ public class NetworkManager : MonoBehaviour {
 
 	//These functions are triggered by HTTP 
 
-	void GetPlayed(JsonData result){
+	void GetPlayed(EventDataType result){
 		//TODO: send information to GameManager with appropriate format 
 	}
 
-	void GetPledged(JsonData result){
+	void GetPledged(EventDataType result){
 		//TODO: send information to GameManager with appropriate format 
 	}
 
-	void GetDiscarded(JsonData result){
+	void GetDiscarded(EventDataType result){
 		//TODO: send information to GameManager with appropriate format 
 	}
 
-	void GetDealMissed(JsonData result){
+	void GetDealMissed(EventDataType result){
 		//TODO: send information to GameManager with appropriate format 
 	}
 
-	void GetDealed(JsonData result){
+	void GetDealed(EventDataType result){
 		//TODO: send information to GameManager with appropriate format 
 		//GameManager.dealed(var a[10]);
 	}
 
-	void GetRoundEnded(JsonData result){
+	void GetRoundEnded(EventDataType result){
 		//TODO: send information to GameManager with appropriate format 
 	}
 
-	void GetGameEnded(JsonData result){
+	void GetGameEnded(EventDataType result){
 		//TODO: send information to GameManager with appropriate format 
 	}
 
