@@ -4,14 +4,19 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class MightyEvent : UnityEvent<object>
+public class MightyEvent : UnityEvent<EventDataType>
 {
+}
+
+public interface EventDataType
+{
+	Dictionary<string, string> parseToDic();
 }
 
 
 public class EventManager : MonoBehaviour {
 
-	public delegate void DelegatedFunction (object obj);
+	public delegate void DelegatedFunction (EventDataType obj);
 
 	private Dictionary <string, MightyEvent> eventDictionary;
 	private static EventManager eventManager;
@@ -38,7 +43,7 @@ public class EventManager : MonoBehaviour {
 		}
 	}
 
-	public static void StartListening (string eventName, UnityAction<object> listener)  {
+	public static void StartListening (string eventName, UnityAction<EventDataType> listener)  {
 		MightyEvent thisEvent = null;
 		if (instance.eventDictionary.TryGetValue (eventName, out thisEvent)) {
 			thisEvent.AddListener (listener);
@@ -50,7 +55,7 @@ public class EventManager : MonoBehaviour {
 		}
 	}
 
-	public static void StopListening (string eventName, UnityAction<object> listener) {
+	public static void StopListening (string eventName, UnityAction<EventDataType> listener) {
 		if (eventManager == null) return;
 		MightyEvent thisEvent = null;
 		if (instance.eventDictionary.TryGetValue (eventName, out thisEvent))  {
@@ -58,7 +63,7 @@ public class EventManager : MonoBehaviour {
 		}
 	}
 
-	public static void TriggerEvent (string eventName, object obj)	{
+	public static void TriggerEvent (string eventName, EventDataType obj)	{
 		MightyEvent thisEvent = null;
 		if (instance.eventDictionary.TryGetValue (eventName, out thisEvent))  {
 			thisEvent.Invoke (obj);

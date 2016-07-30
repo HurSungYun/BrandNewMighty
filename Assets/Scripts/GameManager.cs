@@ -59,12 +59,12 @@ public class GameManager : MonoBehaviour {
 
 	// 내가 더 높은 공약을 불러, 그 내용을 서버에 전달한다. (포기하는 것도 포함)
 	public void ClaimPledge(Pledge pled){
-		NetworkManager.PostEvent ("pledge", pled);
+//		NetworkManager.PostEvent ("pledge", pled);
 	}
 
 	// 딜미스인 경우, 딜미스라고 서버에 전달한다
 	public void ClaimDealMiss() {
-		NetworkManager.PostEvent ("dealmiss", null);
+//		NetworkManager.PostEvent ("dealmiss", null);
 		Debug.Log ("Claim Deal Miss");
 	}
 
@@ -88,18 +88,18 @@ public class GameManager : MonoBehaviour {
 
 	// (주공일 경우) 공약을 최종적으로 확정하거나 변경하고, 서버에 전달한다
 	public void ConfirmFinalPledgeInfo() {
-		NetworkManager.PostEvent ("confirmpledge", Pledge);
+//		NetworkManager.PostEvent ("confirmpledge", Pledge);
 	}
 
 	//TODO: Procrastinate
 	// (주공일 경우) 프렌드를 지정하고, 서버에 전달한다
 	public void SetFriendInfo() {
-		NetworkManager.PostEvent ("setfriend", null /* ... */);
+//		NetworkManager.PostEvent ("setfriend", null /* ... */);
 	}
 
 	// (주공일 경우) 버리는 카드 3장을 확정하고, 서버에 전달한다
 	public void DiscardOptionalCards(Card[] discard) {
-		NetworkManager.PostEvent ("discardoptionalcards", null);
+//		NetworkManager.PostEvent ("discardoptionalcards", null);
 	}
 
 	// (모두) 최종적으로 확정된 공약 정보를 전달받는다
