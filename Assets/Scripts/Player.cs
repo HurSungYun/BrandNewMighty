@@ -17,7 +17,8 @@ public class Player : MonoBehaviour {
 
 	public override string ToString ()
 	{
-		return string.Format (playerId);
+//		return string.Format (playerId);
+		return null;
 	}
 
 	public void updateScore(int num)

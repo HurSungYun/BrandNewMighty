@@ -1,7 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic; 
+using LitJson;
 
 public class NetworkManager : MonoBehaviour {
+
+	private string ServerUrl;
+
+	private Http http;
+
+	public void hello(){
+		Debug.Log ("hello");
+	}
+
+	void Start() {          
+		ServerUrl = "http://192.168.0.27:8080";
+
+		GameObject go = GameObject.Find ("Http");
+		http = (Http)go.GetComponent (typeof(Http));
+
+//		WWW result = http.GET(ServerUrl);
+		PostEvent(null,null);
+	} 
 
 	void OnEnable ()  {
 		EventManager.StartListening ("getPlayedEvent", GetPlayed);
@@ -23,43 +43,60 @@ public class NetworkManager : MonoBehaviour {
 		EventManager.StopListening ("getGameEndedEvent", GetGameEnded);
 	}
 
+	public void Callback (JsonData result){
+		Debug.Log ("entered");
+		Debug.Log (result["messageType"]);
+		Debug.Log (result ["clientId"]);
+		Debug.Log (result ["secret"]);
+
+		//TODO: check event type and pass JsonData to function
+
+		//ex: if(eventType == "play") GetPlayed(result);
+
+	}
+
 	//These functions are triggered by HTTP 
 
-	public void GetPlayed(object obj){
-		//TODO: parse data and send information to GameManager
+	void GetPlayed(EventDataType result){
+		//TODO: send information to GameManager with appropriate format 
 	}
 
-	public void GetPledged(object obj){
-		//TODO: parse data and send information to GameManager
+	void GetPledged(EventDataType result){
+		//TODO: send information to GameManager with appropriate format 
 	}
 
-	public void GetDiscarded(object obj){
-		//TODO: parse data and send information to GameManager
+	void GetDiscarded(EventDataType result){
+		//TODO: send information to GameManager with appropriate format 
 	}
 
-	public void GetDealMissed(object obj){
-		//TODO: parse data and send information to GameManager
+	void GetDealMissed(EventDataType result){
+		//TODO: send information to GameManager with appropriate format 
 	}
 
-	public void GetDealed(object obj){
-		//TODO: parse data and send information to GameManager
+	void GetDealed(EventDataType result){
+		//TODO: send information to GameManager with appropriate format 
 		//GameManager.dealed(var a[10]);
 	}
 
-	public void GetRoundEnded(object obj){
-		//TODO: parse data and send information to GameManager
+	void GetRoundEnded(EventDataType result){
+		//TODO: send information to GameManager with appropriate format 
 	}
 
-	public void GetGameEnded(object obj){
-		//TODO: parse data and send information to GameManager
+	void GetGameEnded(EventDataType result){
+		//TODO: send information to GameManager with appropriate format 
 	}
 
-	public void PostEvent(string eventName, object obj){
+	public void PostEvent(string eventName, EventDataType obj){
 		//TODO: make HTTP Class post events
 
-		//TODO: convert object into Dictionary<string, string> form
+		//TODO: convert EventDataType into Dictionary<string, string> form
 
-		// result = Http.POST(url, postObject);
+		Dictionary<string, string> dictionary = new Dictionary<string, string>();
+
+		dictionary.Add ("god", "jangho");
+		dictionary.Add ("weare", "overwatch");
+
+		WWW result = http.POST("http://192.168.0.27:8080", dictionary);
 		// check error
 	}
 }

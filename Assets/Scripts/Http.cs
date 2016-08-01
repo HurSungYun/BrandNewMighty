@@ -4,23 +4,19 @@ using System.Collections.Generic;
 using System.Text; 
 using System.IO; 
 using System.Net;
+using LitJson;
+using System;
 
 // Referenced from http://stackoverflow.com/questions/8951489/unity-get-post-wrapper
 
 public class Http : MonoBehaviour {
 
-	private string ServerUrl;
-
-	// Use this for initialization 
-	void Start() {          
-		ServerUrl = "http://cse.snu.ac.kr";
-/*		WWW result = GET(ServerUrl);
-		Debug.Log(result.text); */
-
-	} 
+	void start(){
+		Debug.Log ("must be wellcomed");
+	}
 
 	//TODO: I think we should not use just GET. What should we do?
-	WWW GET(string url) { 
+	public WWW GET(string url) { 
 		WWW www = new WWW(url); 
 		StartCoroutine(WaitForRequest(www)); 
 
@@ -31,7 +27,7 @@ public class Http : MonoBehaviour {
 		return www; 
 	} 
 
-	WWW POST(string url, Dictionary<string, string> post) { 
+	public WWW POST(string url, Dictionary<string, string> post) { 
 
 		WWWForm form = new WWWForm(); 
 
@@ -50,6 +46,13 @@ public class Http : MonoBehaviour {
 		// check for errors 
 		if (www.error == null)  { 
 			Debug.Log("WWW Ok!: " + www.text); 
+			JsonData data = JsonMapper.ToObject(www.text);
+
+			GameObject go = GameObject.Find ("NetworkManager");
+			NetworkManager NM = (NetworkManager)go.GetComponent (typeof(NetworkManager));
+
+			NM.Callback (data);
+
 		} 
 		else { 
 			Debug.Log("WWW Error: " + www.error); 

@@ -11,6 +11,7 @@ public class Pledge : MonoBehaviour {
 		this.type = pled.type;
 		this.score = pled.score;
 		this.player = new Player (pled.player);
+		return 0;
 	}
 
 	public override string ToString ()
